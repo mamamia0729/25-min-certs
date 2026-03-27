@@ -1,158 +1,190 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>What is IaC &amp; Terraform — 25 Min Certs</title>
-  <meta name="description" content="Bite-sized certification study — 25 minutes a day, black and white, no distractions.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/25-min-certs/css/style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>What is IaC &amp; Terraform, 25 Min Certs</title>
+    <meta
+      name="description"
+      content="Bite-sized certification study, 25 minutes a day, black and white, no distractions."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/25-min-certs/css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a href="/25-min-certs/" class="site-title">25 Min Certs</a>
+      <p class="site-tagline">Daily IT certification study for busy parents</p>
+      <nav>
+        <a href="/25-min-certs/">Home</a>
+        <a href="/25-min-certs/days/terraform/">Terraform</a>
+        <a href="/25-min-certs/days/rhcsa/">RHCSA</a>
+      </nav>
+    </header>
 
-  <header class="site-header">
-    <a href="/25-min-certs/" class="site-title">25 Min Certs</a>
-    <p class="site-tagline">Daily IT certification study for busy parents</p>
-    <nav>
-      <a href="/25-min-certs/">Home</a>
-      <a href="/25-min-certs/days/terraform/">Terraform</a>
-      <a href="/25-min-certs/days/rhcsa/">RHCSA</a>
-    </nav>
-  </header>
+    <main>
+      <article>
+        <span class="cert-badge">Terraform Associate</span>
+        <h1>Day 1: What is IaC &amp; Terraform</h1>
+        <p
+          style="color: var(--muted); font-size: 0.85rem; margin-bottom: 0.5rem"
+        >
+          25 min read
+        </p>
 
-  <main>
-    
-<article>
-  <span class="cert-badge">Terraform Associate</span>
-  <h1>Day 1: What is IaC &amp; Terraform</h1>
-  <p style="color: var(--muted); font-size: 0.85rem; margin-bottom: 0.5rem;">25 min read</p>
+        <div class="timer-bar">
+          <span class="timer-label">Focus Timer</span>
+          <span class="timer-display">25:00</span>
+          <button class="timer-btn">Start</button>
+        </div>
 
-  <div class="timer-bar">
-    <span class="timer-label">Focus Timer</span>
-    <span class="timer-display">25:00</span>
-    <button class="timer-btn">Start</button>
-  </div>
-
-  <h2>Theory (10 min read)</h2>
-<h3>The problem Terraform solves</h3>
-<p>Before Terraform, to create a server you clicked around in AWS manually. If you needed 10 servers — you clicked 10 times. If something broke, you didn't know what you had. That's the problem.</p>
-<p><strong>IaC = Infrastructure as Code.</strong> Instead of clicking, you write a file that describes what you want. Terraform reads that file and builds it for you.</p>
-<p>Think of it like a recipe. You write the recipe once. You can cook it 100 times, share it with anyone, and it always makes the same dish.</p>
-<div id="compare1">
-<div class="iac-compare">
-<div class="iac-side manual-side">
-<div class="side-label">Without Terraform</div>
-<div class="server-grid">
-<div class="server-box">&#x1F5A5;</div>
-<div class="server-box">&#x1F5A5;</div>
-<div class="server-box">&#x1F5A5;</div>
-<div class="server-box">&#x1F5A5;</div>
-<div class="server-box">&#x1F5A5;</div>
-<div class="server-box">&#x1F5A5;</div>
-<div class="server-box">&#x1F5A5;</div>
-<div class="server-box">&#x1F5A5;</div>
-<div class="server-box">&#x1F5A5;</div>
-<div class="server-box">&#x1F5A5;</div>
-</div>
-<div class="click-counter" id="clickCount"></div>
-</div>
-<div class="iac-side tf-side">
-<div class="side-label">With Terraform</div>
-<div class="tf-file">count = 10</div>
-<div class="tf-run">terraform apply...</div>
-<div class="server-grid">
-<div class="server-box">&#x1F5A5;</div>
-<div class="server-box">&#x1F5A5;</div>
-<div class="server-box">&#x1F5A5;</div>
-<div class="server-box">&#x1F5A5;</div>
-<div class="server-box">&#x1F5A5;</div>
-<div class="server-box">&#x1F5A5;</div>
-<div class="server-box">&#x1F5A5;</div>
-<div class="server-box">&#x1F5A5;</div>
-<div class="server-box">&#x1F5A5;</div>
-<div class="server-box">&#x1F5A5;</div>
-</div>
-<div class="tf-done">Done.</div>
-</div>
-</div>
-<div class="iac-punchline">Same 10 servers. One took minutes. One took seconds.</div>
-</div>
-<button class="replay-btn" onclick="replay('compare1')">Replay</button>
-<h3>How Terraform thinks (the most important concept)</h3>
-<p>Terraform is <strong>declarative</strong> — you say <em>what</em> you want, not <em>how</em> to build it.</p>
-<div class="think-flow" id="think1">
-<div class="think-stage">
-<div class="icon">&#x1F4C4;</div>
-<div class="info">
-<span class="title">Your file says</span>
-<span class="detail">"I want 2 servers"</span>
-</div>
-</div>
-<div class="think-arrow"></div>
-<div class="think-stage">
-<div class="icon">&#x2601;&#xFE0F;</div>
-<div class="info">
-<span class="title">Cloud has</span>
-<span class="detail">1 server running</span>
-</div>
-</div>
-<div class="think-arrow"></div>
-<div class="think-stage">
-<div class="icon">&#x2705;</div>
-<div class="info">
-<span class="title">Terraform creates</span>
-<span class="detail">+1 more server</span>
-</div>
-</div>
-<div class="think-result">Desired state = Real state</div>
-</div>
-<button class="replay-btn" onclick="replay('think1')">Replay</button>
-<p>You never write step-by-step instructions. You just describe the end result.</p>
-<h3>The 4 commands you'll use every single day</h3>
-<div class="lifecycle" id="lifecycle1">
-<div class="lc-step">
-<div class="lc-icon">&#x1F4E5;</div>
-<div class="lc-text">
-<span class="lc-cmd">init</span>
-<span class="lc-desc">Get the tools ready</span>
-</div>
-</div>
-<div class="lc-arrow"></div>
-<div class="lc-step">
-<div class="lc-icon">&#x1F50D;</div>
-<div class="lc-text">
-<span class="lc-cmd">plan</span>
-<span class="lc-desc">Preview what changes</span>
-</div>
-</div>
-<div class="lc-arrow"></div>
-<div class="lc-step">
-<div class="lc-icon">&#x1F528;</div>
-<div class="lc-text">
-<span class="lc-cmd">apply</span>
-<span class="lc-desc">Build it for real</span>
-</div>
-</div>
-<div class="lc-arrow"></div>
-<div class="lc-step">
-<div class="lc-icon">&#x1F5D1;</div>
-<div class="lc-text">
-<span class="lc-cmd">destroy</span>
-<span class="lc-desc">Tear it all down</span>
-</div>
-</div>
-</div>
-<button class="replay-btn" onclick="replay('lifecycle1')">Replay</button>
-<p><strong>Rule:</strong> Always <code>plan</code> before <code>apply</code>. Always. No exceptions.</p>
-<h3>3 things every Terraform project has</h3>
-<pre><code>main.tf         → Where you describe what you want
+        <h2>Theory (10 min read)</h2>
+        <h3>The problem Terraform solves</h3>
+        <p>
+          Before Terraform, to create a server you clicked around in AWS
+          manually. If you needed 10 servers, you clicked 10 times. If something
+          broke, you didn't know what you had. That's the problem.
+        </p>
+        <p>
+          <strong>IaC = Infrastructure as Code.</strong> Instead of clicking,
+          you write a file that describes what you want. Terraform reads that
+          file and builds it for you.
+        </p>
+        <p>
+          Think of it like a recipe. You write the recipe once. You can cook it
+          100 times, share it with anyone, and it always makes the same dish.
+        </p>
+        <div id="compare1">
+          <div class="iac-compare">
+            <div class="iac-side manual-side">
+              <div class="side-label">Without Terraform</div>
+              <div class="server-grid">
+                <div class="server-box">&#x1F5A5;</div>
+                <div class="server-box">&#x1F5A5;</div>
+                <div class="server-box">&#x1F5A5;</div>
+                <div class="server-box">&#x1F5A5;</div>
+                <div class="server-box">&#x1F5A5;</div>
+                <div class="server-box">&#x1F5A5;</div>
+                <div class="server-box">&#x1F5A5;</div>
+                <div class="server-box">&#x1F5A5;</div>
+                <div class="server-box">&#x1F5A5;</div>
+                <div class="server-box">&#x1F5A5;</div>
+              </div>
+              <div class="click-counter" id="clickCount"></div>
+            </div>
+            <div class="iac-side tf-side">
+              <div class="side-label">With Terraform</div>
+              <div class="tf-file">count = 10</div>
+              <div class="tf-run">terraform apply...</div>
+              <div class="server-grid">
+                <div class="server-box">&#x1F5A5;</div>
+                <div class="server-box">&#x1F5A5;</div>
+                <div class="server-box">&#x1F5A5;</div>
+                <div class="server-box">&#x1F5A5;</div>
+                <div class="server-box">&#x1F5A5;</div>
+                <div class="server-box">&#x1F5A5;</div>
+                <div class="server-box">&#x1F5A5;</div>
+                <div class="server-box">&#x1F5A5;</div>
+                <div class="server-box">&#x1F5A5;</div>
+                <div class="server-box">&#x1F5A5;</div>
+              </div>
+              <div class="tf-done">Done.</div>
+            </div>
+          </div>
+          <div class="iac-punchline">
+            Same 10 servers. One took minutes. One took seconds.
+          </div>
+        </div>
+        <button class="replay-btn" onclick="replay('compare1')">Replay</button>
+        <h3>How Terraform thinks (the most important concept)</h3>
+        <p>
+          Terraform is <strong>declarative</strong>, you say <em>what</em> you
+          want, not <em>how</em> to build it.
+        </p>
+        <div class="think-flow" id="think1">
+          <div class="think-stage">
+            <div class="icon">&#x1F4C4;</div>
+            <div class="info">
+              <span class="title">Your file says</span>
+              <span class="detail">"I want 2 servers"</span>
+            </div>
+          </div>
+          <div class="think-arrow"></div>
+          <div class="think-stage">
+            <div class="icon">&#x2601;&#xFE0F;</div>
+            <div class="info">
+              <span class="title">Cloud has</span>
+              <span class="detail">1 server running</span>
+            </div>
+          </div>
+          <div class="think-arrow"></div>
+          <div class="think-stage">
+            <div class="icon">&#x2705;</div>
+            <div class="info">
+              <span class="title">Terraform creates</span>
+              <span class="detail">+1 more server</span>
+            </div>
+          </div>
+          <div class="think-result">Desired state = Real state</div>
+        </div>
+        <button class="replay-btn" onclick="replay('think1')">Replay</button>
+        <p>
+          You never write step-by-step instructions. You just describe the end
+          result.
+        </p>
+        <h3>The 4 commands you'll use every single day</h3>
+        <div class="lifecycle" id="lifecycle1">
+          <div class="lc-step">
+            <div class="lc-icon">&#x1F4E5;</div>
+            <div class="lc-text">
+              <span class="lc-cmd">init</span>
+              <span class="lc-desc">Get the tools ready</span>
+            </div>
+          </div>
+          <div class="lc-arrow"></div>
+          <div class="lc-step">
+            <div class="lc-icon">&#x1F50D;</div>
+            <div class="lc-text">
+              <span class="lc-cmd">plan</span>
+              <span class="lc-desc">Preview what changes</span>
+            </div>
+          </div>
+          <div class="lc-arrow"></div>
+          <div class="lc-step">
+            <div class="lc-icon">&#x1F528;</div>
+            <div class="lc-text">
+              <span class="lc-cmd">apply</span>
+              <span class="lc-desc">Build it for real</span>
+            </div>
+          </div>
+          <div class="lc-arrow"></div>
+          <div class="lc-step">
+            <div class="lc-icon">&#x1F5D1;</div>
+            <div class="lc-text">
+              <span class="lc-cmd">destroy</span>
+              <span class="lc-desc">Tear it all down</span>
+            </div>
+          </div>
+        </div>
+        <button class="replay-btn" onclick="replay('lifecycle1')">
+          Replay
+        </button>
+        <p>
+          <strong>Rule:</strong> Always <code>plan</code> before
+          <code>apply</code>. Always. No exceptions.
+        </p>
+        <h3>3 things every Terraform project has</h3>
+        <pre><code>main.tf         → Where you describe what you want
 variables.tf    → The inputs (optional today)
 outputs.tf      → The results printed after apply (optional today)
 </code></pre>
-<p>Start with just <code>main.tf</code>. That's all you need today.</p>
-<h3>What a Terraform file looks like</h3>
-<pre><code class="language-hcl">terraform {
+        <p>Start with just <code>main.tf</code>. That's all you need today.</p>
+        <h3>What a Terraform file looks like</h3>
+        <pre><code class="language-hcl">terraform {
   required_providers {
     local = {
       source = &quot;hashicorp/local&quot;
@@ -165,125 +197,186 @@ resource &quot;local_file&quot; &quot;hello&quot; {
   content  = &quot;Hello, Terraform!&quot;
 }
 </code></pre>
-<p>Break it down:</p>
-<ul>
-<li><code>terraform {}</code> → tells Terraform what provider (tool) to use</li>
-<li><code>resource</code> → the thing you want to create</li>
-<li><code>&quot;local_file&quot;</code> → the type of resource</li>
-<li><code>&quot;hello&quot;</code> → your nickname for it (you pick this)</li>
-<li><code>filename</code> / <code>content</code> → the settings for that resource</li>
-</ul>
-<hr>
-<h2>Hands-On (35 min)</h2>
-<h3>Step 1 — Create your folder</h3>
-<pre><code class="language-bash">mkdir terraform-30days
+        <p>Break it down:</p>
+        <ul>
+          <li>
+            <code>terraform {}</code> → tells Terraform what provider (tool) to
+            use
+          </li>
+          <li><code>resource</code> → the thing you want to create</li>
+          <li><code>&quot;local_file&quot;</code> → the type of resource</li>
+          <li>
+            <code>&quot;hello&quot;</code> → your nickname for it (you pick
+            this)
+          </li>
+          <li>
+            <code>filename</code> / <code>content</code> → the settings for that
+            resource
+          </li>
+        </ul>
+        <hr />
+        <h2>Hands-On (35 min)</h2>
+        <h3>Step 1, Create your folder</h3>
+        <pre><code class="language-bash">mkdir terraform-30days
 cd terraform-30days
 mkdir day01
 cd day01
 </code></pre>
-<h3>Step 2 — Create main.tf</h3>
-<p>Create <code>main.tf</code> and paste the code block above into it.</p>
-<h3>Step 3 — Run the 4 commands in order</h3>
-<pre><code class="language-bash">terraform init
+        <h3>Step 2, Create main.tf</h3>
+        <p>
+          Create <code>main.tf</code> and paste the code block above into it.
+        </p>
+        <h3>Step 3, Run the 4 commands in order</h3>
+        <pre><code class="language-bash">terraform init
 terraform plan
 terraform apply    # type &quot;yes&quot; when asked
 </code></pre>
-<p>Check your folder — <code>hello.txt</code> appeared.</p>
-<h3>Step 4 — Modify and re-apply</h3>
-<p>Change the content in <code>main.tf</code> to anything else, run <code>terraform apply</code> again. Watch it update.</p>
-<h3>Step 5 — Destroy</h3>
-<pre><code class="language-bash">terraform destroy  # type &quot;yes&quot;
+        <p>Check your folder, <code>hello.txt</code> appeared.</p>
+        <h3>Step 4, Modify and re-apply</h3>
+        <p>
+          Change the content in <code>main.tf</code> to anything else, run
+          <code>terraform apply</code> again. Watch it update.
+        </p>
+        <h3>Step 5, Destroy</h3>
+        <pre><code class="language-bash">terraform destroy  # type &quot;yes&quot;
 </code></pre>
-<p><code>hello.txt</code> is gone.</p>
-<hr>
-<h2>Break It On Purpose (15 min)</h2>
-<p>Try each of these, run <code>terraform plan</code>, read the error:</p>
-<ol>
-<li>Delete the quotes around <code>&quot;hello.txt&quot;</code> — what happens?</li>
-<li>Rename <code>resource</code> to <code>resources</code> — what happens?</li>
-<li>Remove the <code>content</code> line entirely — what happens?</li>
-</ol>
-<p>Reading errors without panic is a core Terraform skill. Errors are just Terraform telling you exactly what's wrong.</p>
-<hr>
-<h2>What You Learned Today</h2>
-<ul>
-<li>IaC means writing files instead of clicking</li>
-<li>Terraform is declarative — describe the end result</li>
-<li><code>init → plan → apply → destroy</code> is the core loop</li>
-<li>A resource block has: type, name, and settings</li>
-<li>Errors are readable and fixable</li>
-</ul>
-<p><strong>Tomorrow — Day 2:</strong> You'll run the same 4 commands but now you'll understand every lifecycle stage and what Terraform is doing behind the scenes between each one.</p>
+        <p><code>hello.txt</code> is gone.</p>
+        <hr />
+        <h2>Break It On Purpose (15 min)</h2>
+        <p>
+          Try each of these, run <code>terraform plan</code>, read the error:
+        </p>
+        <ol>
+          <li>
+            Delete the quotes around <code>&quot;hello.txt&quot;</code>, what
+            happens?
+          </li>
+          <li>
+            Rename <code>resource</code> to <code>resources</code>, what
+            happens?
+          </li>
+          <li>Remove the <code>content</code> line entirely, what happens?</li>
+        </ol>
+        <p>
+          Reading errors without panic is a core Terraform skill. Errors are
+          just Terraform telling you exactly what's wrong.
+        </p>
+        <hr />
+        <h2>What You Learned Today</h2>
+        <ul>
+          <li>IaC means writing files instead of clicking</li>
+          <li>Terraform is declarative, describe the end result</li>
+          <li><code>init → plan → apply → destroy</code> is the core loop</li>
+          <li>A resource block has: type, name, and settings</li>
+          <li>Errors are readable and fixable</li>
+        </ul>
+        <p>
+          <strong>Tomorrow, Day 2:</strong> You'll run the same 4 commands but
+          now you'll understand every lifecycle stage and what Terraform is
+          doing behind the scenes between each one.
+        </p>
 
+        <div class="flashcard-deck">
+          <h2>Flashcards, Day 1</h2>
 
-  
-  <div class="flashcard-deck">
-    <h2>Flashcards — Day 1</h2>
-    
-    <div class="flashcard">
-      <div class="flashcard-question">What does IaC stand for?</div>
-      <div class="flashcard-answer">Infrastructure as Code — instead of clicking through a console, you write files that describe what you want built.</div>
-      <span class="flashcard-hint">click to flip</span>
-    </div>
-    
-    <div class="flashcard">
-      <div class="flashcard-question">Is Terraform declarative or imperative?</div>
-      <div class="flashcard-answer">Declarative. You describe the end result (what), not the steps to get there (how).</div>
-      <span class="flashcard-hint">click to flip</span>
-    </div>
-    
-    <div class="flashcard">
-      <div class="flashcard-question">What are the 4 core Terraform commands?</div>
-      <div class="flashcard-answer">init → plan → apply → destroy. Always plan before apply.</div>
-      <span class="flashcard-hint">click to flip</span>
-    </div>
-    
-    <div class="flashcard">
-      <div class="flashcard-question">What does &#39;terraform init&#39; do?</div>
-      <div class="flashcard-answer">Downloads the providers and modules Terraform needs — like &#39;npm install&#39; for Terraform.</div>
-      <span class="flashcard-hint">click to flip</span>
-    </div>
-    
-    <div class="flashcard">
-      <div class="flashcard-question">What does &#39;terraform plan&#39; do?</div>
-      <div class="flashcard-answer">Shows you what WILL change without actually changing anything. A dry run.</div>
-      <span class="flashcard-hint">click to flip</span>
-    </div>
-    
-    <div class="flashcard">
-      <div class="flashcard-question">What are the 3 files every Terraform project typically has?</div>
-      <div class="flashcard-answer">main.tf (what you want), variables.tf (inputs), outputs.tf (results). Start with just main.tf.</div>
-      <span class="flashcard-hint">click to flip</span>
-    </div>
-    
-    <div class="flashcard">
-      <div class="flashcard-question">In a resource block, what are the 3 parts?</div>
-      <div class="flashcard-answer">Type (e.g. local_file), name (your nickname for it), and settings (the configuration arguments).</div>
-      <span class="flashcard-hint">click to flip</span>
-    </div>
-    
-    <div class="flashcard">
-      <div class="flashcard-question">What does the terraform {} block do?</div>
-      <div class="flashcard-answer">Tells Terraform which providers (tools/plugins) to download and use.</div>
-      <span class="flashcard-hint">click to flip</span>
-    </div>
-    
-    <div class="flashcard-nav">
-      <button class="fc-prev" disabled>Prev</button>
-      <span class="flashcard-counter">1 / 8</span>
-      <button class="fc-next">Next</button>
-    </div>
-  </div>
-  
+          <div class="flashcard">
+            <div class="flashcard-question">What does IaC stand for?</div>
+            <div class="flashcard-answer">
+              Infrastructure as Code, instead of clicking through a console, you
+              write files that describe what you want built.
+            </div>
+            <span class="flashcard-hint">click to flip</span>
+          </div>
 
-</article>
+          <div class="flashcard">
+            <div class="flashcard-question">
+              Is Terraform declarative or imperative?
+            </div>
+            <div class="flashcard-answer">
+              Declarative. You describe the end result (what), not the steps to
+              get there (how).
+            </div>
+            <span class="flashcard-hint">click to flip</span>
+          </div>
 
-  </main>
+          <div class="flashcard">
+            <div class="flashcard-question">
+              What are the 4 core Terraform commands?
+            </div>
+            <div class="flashcard-answer">
+              init → plan → apply → destroy. Always plan before apply.
+            </div>
+            <span class="flashcard-hint">click to flip</span>
+          </div>
 
-  <footer class="site-footer">
-    25 Min Certs — Built for busy parents, one day at a time.
-  </footer>
+          <div class="flashcard">
+            <div class="flashcard-question">
+              What does &#39;terraform init&#39; do?
+            </div>
+            <div class="flashcard-answer">
+              Downloads the providers and modules Terraform needs, like &#39;npm
+              install&#39; for Terraform.
+            </div>
+            <span class="flashcard-hint">click to flip</span>
+          </div>
 
-  <script src="/25-min-certs/js/main.js"></script>
-</body>
+          <div class="flashcard">
+            <div class="flashcard-question">
+              What does &#39;terraform plan&#39; do?
+            </div>
+            <div class="flashcard-answer">
+              Shows you what WILL change without actually changing anything. A
+              dry run.
+            </div>
+            <span class="flashcard-hint">click to flip</span>
+          </div>
+
+          <div class="flashcard">
+            <div class="flashcard-question">
+              What are the 3 files every Terraform project typically has?
+            </div>
+            <div class="flashcard-answer">
+              main.tf (what you want), variables.tf (inputs), outputs.tf
+              (results). Start with just main.tf.
+            </div>
+            <span class="flashcard-hint">click to flip</span>
+          </div>
+
+          <div class="flashcard">
+            <div class="flashcard-question">
+              In a resource block, what are the 3 parts?
+            </div>
+            <div class="flashcard-answer">
+              Type (e.g. local_file), name (your nickname for it), and settings
+              (the configuration arguments).
+            </div>
+            <span class="flashcard-hint">click to flip</span>
+          </div>
+
+          <div class="flashcard">
+            <div class="flashcard-question">
+              What does the terraform {} block do?
+            </div>
+            <div class="flashcard-answer">
+              Tells Terraform which providers (tools/plugins) to download and
+              use.
+            </div>
+            <span class="flashcard-hint">click to flip</span>
+          </div>
+
+          <div class="flashcard-nav">
+            <button class="fc-prev" disabled>Prev</button>
+            <span class="flashcard-counter">1 / 8</span>
+            <button class="fc-next">Next</button>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      25 Min Certs, Built for busy parents, one day at a time.
+    </footer>
+
+    <script src="/25-min-certs/js/main.js"></script>
+  </body>
 </html>
